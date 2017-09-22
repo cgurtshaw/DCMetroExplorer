@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MetroExplor.er</string>
+    <string name="btn_closest_station_txt">Closest Metro Station</string>
+    <string name="btn_view_stations_txt">View All Metro Stations</string>
+    <string name="btn_view_favorites_txt">View Favorites</string>
+</resources>
