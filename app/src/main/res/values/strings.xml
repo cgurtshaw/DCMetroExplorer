@@ -3,4 +3,5 @@
     <string name="btn_closest_station_txt">Closest Metro Station</string>
     <string name="btn_view_stations_txt">View All Metro Stations</string>
     <string name="btn_view_favorites_txt">View Favorites</string>
+    <string name="intro_message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis tincidunt dui. Nunc sed suscipit felis. Morbi vel lectus fermentum ante lacinia ullamcorper et et justo. Praesent urna libero, euismod non porttitor eu, suscipit vitae odio. Etiam eleifend congue consectetur. Integer et eleifend lacus. Fusce blandit maximus nunc a dapibus. Cras molestie diam et mollis faucibus. Cras eu eros quis nisl fringilla scelerisque ut et orci. Nam tincidunt est vel purus euismod sollicitudin. Curabitur at massa eros. Vivamus viverra auctor odio, in molestie odio finibus molestie.</string>
 </resources>
