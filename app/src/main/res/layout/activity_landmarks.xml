@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gwmobile.metroexplorer.MetroStationActivity">
+    tools:context="com.gwmobile.metroexplorer.LandmarksActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="THIS IS THE LANDMARK ACTIVITY"
-        />
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF7043"/>
 </LinearLayout>
