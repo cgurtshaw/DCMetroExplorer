@@ -9,13 +9,6 @@
     card_view:cardElevation="@dimen/card_elevation">
 
     <LinearLayout
-        android:id="@+id/stationHolder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?android:selectableItemBackground"
-        android:orientation="horizontal" />
-
-    <LinearLayout
         android:id="@+id/stationNameHolder"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -32,7 +25,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/black" />
 
     </LinearLayout>
 

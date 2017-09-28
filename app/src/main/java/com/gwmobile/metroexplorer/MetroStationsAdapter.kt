@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.row_station.view.*
  */
 
 class MetroStationsAdapter(val stationList: StationList) : RecyclerView.Adapter<MetroStationsAdapter.ViewHolder>() {
-    lateinit var itemClickListener: OnItemClickListener
 
     override fun getItemCount(): Int {
         return stationList.stations.size
@@ -31,24 +30,13 @@ class MetroStationsAdapter(val stationList: StationList) : RecyclerView.Adapter<
         holder.bindItems(stationList.stations[position])
     }
 
-    fun setOnItemClickListener(itemClickListener: OnItemClickListener){
-        this.itemClickListener = itemClickListener
-    }
-
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
-        init {
-            itemView.stationHolder.setOnClickListener(this)
-        }
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(station: Station){
             val name = itemView.stationNameHolder.stationName
             name.text = station.name
         }
 
-        override fun onClick(view: View) = itemClickListener.onItemClick(itemView, adapterPosition)
     }
 
-    interface OnItemClickListener {
-        fun onItemClick(view: View, position: Int)
-    }
 }
