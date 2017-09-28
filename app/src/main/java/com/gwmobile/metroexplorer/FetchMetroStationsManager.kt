@@ -20,31 +20,29 @@ object FetchMetroStationsManager {
     fun getMetroStationList (context: Context, recyclerView: RecyclerView) = FetchMetroStationsTask(context, recyclerView).execute()
 
     fun getClosestMetroStation (longitude: Long, latitude: Long, context: Context) : String{
-        return ""
+        TODO()
     }
 
-    class FetchMetroStationsTask(val context: Context, var recyclerView: RecyclerView) : AsyncTask<Void, Void, JsonObject>() {
+    class FetchMetroStationsTask(val context: Context, var recyclerView: RecyclerView) : AsyncTask<Void, Void, StationList>() {
         val TAG = FetchMetroStationsTask::class.java.name
 
-        override fun doInBackground(vararg p0: Void?): JsonObject? {
+        override fun doInBackground(vararg p0: Void?): StationList {
             try {
                 Log.d(TAG, "Start doInBackground...")
-                return Ion.with(context).load(Constants.STATIONS_ENDPOINT)
-                        .addHeader("api_key", Constants.WMATA_PRIMARY_KEY)
-                        .asJsonObject().get()
+                val rawResult = Ion.with(context).load(Constants.STATIONS_ENDPOINT)
+                        .addHeader("api_key", Constants.WMATA_PRIMARY_KEY).asString().get()
+                val stationList = Gson().fromJson(rawResult, StationList::class.java)
+                stationList.filter()
+                return stationList
             } catch (e: Exception) {
                 Log.e(TAG, e.message)
-                return null
+                return StationList(ArrayList<Station>())
             }
         }
 
-        override fun onPostExecute(result: JsonObject?) {
+        override fun onPostExecute(result: StationList) {
             Log.d(TAG, "Start onPostExecute...")
-            val gson = Gson()
-            val stationList = gson.fromJson(result, StationList::class.java)
-            Log.d(TAG, "End Parse...")
-            recyclerView.adapter = MetroStationsAdapter(stationList)
-            Log.d("result", result.toString())
+            recyclerView.adapter = MetroStationsAdapter(result)
         }
 
     }
