@@ -8,8 +8,7 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_metro_station.*
 
 class MetroStationActivity : AppCompatActivity() {
-    lateinit var staggeredLayoutManager: StaggeredGridLayoutManager
-    lateinit var adapter: MetroStationAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_metro_station)

@@ -12,12 +12,5 @@ class LandmarksActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landmarks)
-        //set the layout manager of the RecyclerView to a StaggeredGridLayoutManager
-        //use to create two types of vertically staggered grids
-        //A span count of 1 makes this a list rather than a grid
-        staggeredLayoutManager = StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL)
-        list.layoutManager = staggeredLayoutManager
-        adapter = LandmarksAdapter(this)
-        list.adapter = adapter
     }
 }
