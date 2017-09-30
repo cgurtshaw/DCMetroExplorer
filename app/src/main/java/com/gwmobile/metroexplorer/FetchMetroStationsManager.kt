@@ -5,12 +5,9 @@ import android.os.AsyncTask
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.google.gson.Gson
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import com.gwmobile.metroexplorer.model.Station
 import com.gwmobile.metroexplorer.model.StationList
 import com.koushikdutta.ion.Ion
-import org.json.JSONObject
 
 /**
  * Created by cgurtshaw on 9/25/2017.
@@ -42,7 +39,7 @@ object FetchMetroStationsManager {
 
         override fun onPostExecute(result: StationList) {
             Log.d(TAG, "Start onPostExecute...")
-            recyclerView.adapter = MetroStationsAdapter(result)
+            recyclerView.adapter = MetroStationsAdapter(result, context)
         }
 
     }
