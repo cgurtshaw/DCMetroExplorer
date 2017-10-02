@@ -27,4 +27,17 @@ object PersistanceManager{
         getSharedPreferences(context).edit().putString(Constants.METRO_STATION_KEY, stations).commit()
     }
 
+    fun  hasYelpToken(context: Context): Boolean {
+        return getSharedPreferences(context).contains(Constants.YELP_TOKEN)
+    }
+
+    fun  setYelpToken(context: Context, token: String) {
+        getSharedPreferences(context).edit().putString(Constants.YELP_TOKEN, token).commit()
+    }
+
+    fun getYelpToken(context: Context) : String{
+        return getSharedPreferences(context).getString(Constants.YELP_TOKEN, Constants.EMPTY_STRING)
+    }
+
+
 }

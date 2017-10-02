@@ -10,5 +10,9 @@ object Constants {
     val WMATA_SECONDARY_KEY = "c73b1b4a2d714a0f8786f678d0d22f36"
     val METRO_STATION_KEY = "storedStations"
     val EMPTY_STRING = ""
+    val  YELP_TOKEN = "storedYelpToken"
+    val  YELP_TOKEN_ENDPOINT = "https://api.yelp.com/oauth2/token"
+    val  YELP_CLIENT_ID = "bZQRnBC0Ic6AevbtzJh_Kg"
+    val  YELP_SECRET = "l3gwv3qWQ3x0y0uAl3eImNXsI83C98nJtgy8iujR8ZYqrvnzHGTO53MOoINgRw8j"
 
 }
