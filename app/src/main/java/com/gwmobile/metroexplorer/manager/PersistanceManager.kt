@@ -39,5 +39,9 @@ object PersistanceManager{
         return getSharedPreferences(context).getString(Constants.YELP_TOKEN, Constants.EMPTY_STRING)
     }
 
+    fun  getFavoriteLandmarks(context: Context): String {
+        return getSharedPreferences(context).getString(Constants.LANDMARKS_KEY, Constants.EMPTY_STRING)
+    }
+
 
 }
