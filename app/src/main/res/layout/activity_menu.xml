@@ -1,109 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context="com.gwmobile.metroexplorer.MenuActivity">
 
-    <LinearLayout
-        android:id="@+id/Layout1"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/colorAccent">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/intro_message"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/Layout1">
+        android:layout_weight="2">
 
+        <ImageView
+            android:id="@+id/image_closest_station"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dc1" />
 
-        <RelativeLayout
+        <Button
+            android:id="@+id/btn_closest_station"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="#AA000000"
+            android:text="@string/btn_closest_station_txt"
+            android:textColor="#ffffffff" />
+    </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/image_closest_station"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:src="@drawable/dc1"
-                android:scaleType="centerCrop"
-                />
-            <Button
-                android:id="@+id/btn_closest_station"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_closest_station_txt"
-                android:background="#AA000000"
-                android:textColor="#ffffffff"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                />
-        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/image_select_station"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_weight="2"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dc3" />
+
+        <Button
+            android:id="@+id/btn_view_stations"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="#AA000000"
+            android:text="@string/btn_view_stations_txt"
+            android:textColor="#ffffffff" />
 
-            <ImageView
-                android:id="@+id/image_select_station"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_weight="2"
-                android:src="@drawable/dc3"
-                android:scaleType="centerCrop"
-                />
-            <Button
-                android:id="@+id/btn_view_stations"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_view_stations_txt"
-                android:background="#AA000000"
-                android:textColor="#ffffffff"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                />
+    </RelativeLayout>
 
-        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/image_favorite_landmarks"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_weight="2"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dc2" />
+
+        <Button
+            android:id="@+id/btn_view_favorites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="#AA000000"
+            android:text="@string/btn_view_favorites_txt"
+            android:textColor="#ffffffff" />
 
-            <ImageView
-                android:id="@+id/image_favorite_landmarks"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_weight="2"
-                android:src="@drawable/dc2"
-                android:scaleType="centerCrop"
-                />
-            <Button
-                android:id="@+id/btn_view_favorites"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_view_favorites_txt"
-                android:background="#AA000000"
-                android:textColor="#ffffffff"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                />
+    </RelativeLayout>
 
-        </RelativeLayout>
+</LinearLayout>
 
-    </LinearLayout>
-
-</RelativeLayout>
