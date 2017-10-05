@@ -31,8 +31,8 @@ object YelpAuthManager{
                     .setBodyParameter("grant_type", "client_credentials")
                     .setBodyParameter("client_id", Constants.YELP_CLIENT_ID)
                     .setBodyParameter("client_secret", Constants.YELP_SECRET)
-                    .asJsonObject()
-            val token = rawResult.get().get("access_token").toString()
+                    .asJsonObject().get()
+            val token = rawResult.get("access_token").asString
             storeToken(context, token)
             return token
         } catch (e: Exception) {

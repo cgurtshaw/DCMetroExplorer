@@ -6,11 +6,10 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.google.gson.Gson
 import com.gwmobile.metroexplorer.Constants
+import com.gwmobile.metroexplorer.LandmarksAdapter
 import com.gwmobile.metroexplorer.MetroStationsAdapter
 import com.gwmobile.metroexplorer.model.Landmark
 import com.gwmobile.metroexplorer.model.LandmarkList
-import com.gwmobile.metroexplorer.model.Station
-import com.gwmobile.metroexplorer.model.StationList
 import com.koushikdutta.ion.Ion
 
 /**
@@ -20,25 +19,30 @@ import com.koushikdutta.ion.Ion
 object FetchLandmarksManager {
 
 
-    fun getLandmarksNearMetro(longitude: Long, latitude: Long, context: Context, recyclerView: RecyclerView) {
-        TODO()
+    fun getLandmarksNearMetro(longitude: Double, latitude: Double, context: Context, recyclerView: RecyclerView) {
+        FetchLandmarksFromAPI(context, recyclerView).execute(longitude, latitude)
     }
 
-    fun getFavoriteLandmarks(context: Context, recyclerView: RecyclerView): String {
-        TODO()
+    fun getFavoriteLandmarks(context: Context, recyclerView: RecyclerView) {
+        FetchFavoritesFromStorage(context, recyclerView).execute()
     }
 
-    class FetchLandmarksFromAPI(val context: Context, var recyclerView: RecyclerView) : AsyncTask<Long, Void, LandmarkList>() {
+    class FetchLandmarksFromAPI(val context: Context, var recyclerView: RecyclerView) : AsyncTask<Double, Void, LandmarkList>() {
         val TAG = FetchLandmarksFromAPI::class.java.name
 
-        override fun doInBackground(vararg params: Long?): LandmarkList {
+        override fun doInBackground(vararg params: Double?): LandmarkList {
             try {
                 Log.d(TAG, "Start doInBackground...")
-                val endpoint = getYelpSearchEndPoint(params[0],params[1])
                 val token = YelpAuthManager.getBearerToken(context)
                 if(!token.equals(Constants.EMPTY_STRING)){
-                    val rawResult = Ion.with(context).load(endpoint)
-                            .addHeader("authorization", token).asString().get()
+                    val rawResult = Ion.with(context).load(Constants.YELP_SEARCH_ENDPOINT)
+                            .addHeader("Authorization", "Bearer $token")
+                            .addQuery("longitude", params[0].toString())
+                            .addQuery("latitude", params[1].toString())
+                            .addQuery("categories", "landmarks")
+                            .addQuery("radius", "1609")
+                            .addQuery("sort_by", "rating")
+                            .asString().get()
                     val landmarkList = Gson().fromJson(rawResult, LandmarkList::class.java)
                     return landmarkList
                 }else{
@@ -53,18 +57,7 @@ object FetchLandmarksManager {
 
         override fun onPostExecute(result: LandmarkList) {
             Log.d(TAG, "Start onPostExecute...")
-            TODO()
-            //recyclerView.adapter = MetroStationsAdapter(result, context)
-        }
-
-        private fun getYelpSearchEndPoint(longitude: Long?, latitude: Long?) : String {
-            var endPoint = StringBuilder(Constants.YELP_SEARCH_ENDPOINT)
-            endPoint.append("latidue=")
-                    .append(latitude.toString())
-                    .append("&longitude=")
-                    .append(longitude.toString())
-                    .append("&categories=landmarks&radius=1609&sort_by=rating")
-            return endPoint.toString()
+            recyclerView.adapter = LandmarksAdapter(result, context)
         }
     }
 
