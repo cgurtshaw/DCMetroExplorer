@@ -1,11 +1,12 @@
-package com.gwmobile.metroexplorer
+package com.gwmobile.metroexplorer.manager
 
 import android.content.Context
 import android.os.AsyncTask
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.google.gson.Gson
-import com.gwmobile.metroexplorer.manager.PersistanceManager
+import com.gwmobile.metroexplorer.Constants
+import com.gwmobile.metroexplorer.MetroStationsAdapter
 import com.gwmobile.metroexplorer.model.Station
 import com.gwmobile.metroexplorer.model.StationList
 import com.koushikdutta.ion.Ion

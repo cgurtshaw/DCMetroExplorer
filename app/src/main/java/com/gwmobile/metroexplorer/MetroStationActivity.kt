@@ -1,18 +1,11 @@
 package com.gwmobile.metroexplorer
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.util.Pair
-
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
-import android.view.View
-import android.view.Window
-import android.widget.ImageView
 import android.widget.LinearLayout
+import com.gwmobile.metroexplorer.manager.FetchMetroStationsManager
 import kotlinx.android.synthetic.main.activity_menu.*
 import kotlinx.android.synthetic.main.activity_metro_station.*
 
