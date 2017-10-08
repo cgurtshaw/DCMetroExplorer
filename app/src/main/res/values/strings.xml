@@ -4,4 +4,6 @@
     <string name="btn_view_stations_txt">View All Metro Stations</string>
     <string name="btn_view_favorites_txt">View Favorites</string>
     <string name="search">search</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">search</string>
 </resources>
