@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MetroExplor.er</string>
+    <string name="btn_closest_station_txt">Estacion Mas Cercana</string>
+    <string name="btn_view_stations_txt">Todas las Estaciones</string>
+    <string name="btn_view_favorites_txt">Ver Favoritas</string>
+    <string name="search">buscar</string>
+    <string name="search_title">Buscar</string>
+    <string name="search_hint">Ayuda Busqueda</string>
+</resources>
