@@ -10,5 +10,5 @@
         android:id="@+id/rv_landmark_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FF7043"/>
+        android:background="@android:color/darker_gray"/>
 </LinearLayout>

@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.AsyncTask
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import com.google.gson.Gson
 import com.gwmobile.metroexplorer.Constants
 import com.gwmobile.metroexplorer.LandmarksAdapter
@@ -18,6 +20,11 @@ import com.koushikdutta.ion.Ion
 
 object FetchLandmarksManager {
 
+    private val onItemClickListener = object : LandmarksAdapter.OnItemClickListener {
+        override fun onItemClick(context: Context, view: View, position: Int) {
+            Toast.makeText(context, "Clicked " + position, Toast.LENGTH_SHORT).show()
+        }
+    }
 
     fun getLandmarksNearMetro(longitude: Double, latitude: Double, context: Context, recyclerView: RecyclerView) {
         FetchLandmarksFromAPI(context, recyclerView).execute(longitude, latitude)
@@ -57,7 +64,9 @@ object FetchLandmarksManager {
 
         override fun onPostExecute(result: LandmarkList) {
             Log.d(TAG, "Start onPostExecute...")
-            recyclerView.adapter = LandmarksAdapter(result, context)
+            var adapter = LandmarksAdapter(result, context)
+            adapter.setOnItemClickListener(onItemClickListener)
+            recyclerView.adapter = adapter
         }
     }
 

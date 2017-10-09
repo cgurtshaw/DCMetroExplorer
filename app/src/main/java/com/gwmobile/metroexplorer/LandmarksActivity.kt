@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 
 import android.support.v7.widget.StaggeredGridLayoutManager
+import android.view.View
 import android.widget.LinearLayout
 import com.gwmobile.metroexplorer.manager.FetchLandmarksManager
 import com.gwmobile.metroexplorer.manager.FetchMetroStationsManager
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_landmarks.*
 import kotlinx.android.synthetic.main.activity_metro_station.*
 
 class LandmarksActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
