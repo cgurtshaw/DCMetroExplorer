@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.LinearLayout
 import com.gwmobile.metroexplorer.manager.FetchLandmarksManager
 import com.gwmobile.metroexplorer.manager.FetchMetroStationsManager
+import com.gwmobile.metroexplorer.utils.MetroUtil
 import kotlinx.android.synthetic.main.activity_landmarks.*
 import kotlinx.android.synthetic.main.activity_metro_station.*
 
@@ -29,19 +30,19 @@ class LandmarksActivity : AppCompatActivity() {
         val requestType = intent.getStringExtra("requestType")
 
         when(requestType){
-            Constants.LOCATION -> fetchWithLocation()
+            Constants.LOCATION ->{
+                val lon = intent.getDoubleExtra("lon", 0.0)
+                val lat = intent.getDoubleExtra("lat", 0.0)
+                val metroStation = MetroUtil.getClosestStation(lon, lat, this)
+                val metroLon = metroStation?.longitude ?: 0.0
+                val metroLat = metroStation?.latitude ?: 0.0
+                FetchLandmarksManager.getLandmarksNearMetro(metroLon, metroLat, this, recyclerView)
+            }
             Constants.FAVORITE -> fetchFavorites()
         }
     }
 
     private fun fetchFavorites() {
         FetchLandmarksManager.getFavoriteLandmarks(this, recyclerView)
-    }
-
-    private fun fetchWithLocation() {
-        //obtain requestType from intent
-        val lon = intent.getDoubleExtra("lon", 0.0)
-        val lat = intent.getDoubleExtra("lat", 0.0)
-        FetchLandmarksManager.getLandmarksNearMetro(lon, lat, this, recyclerView)
     }
 }

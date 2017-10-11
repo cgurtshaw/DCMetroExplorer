@@ -16,23 +16,20 @@ import com.koushikdutta.ion.Ion
  */
 object FetchMetroStationsManager {
 
-    fun getMetroStationList (context: Context, recyclerView: RecyclerView){
-        if(PersistanceManager.hasMetroStations(context)){
-            FetchMetroStationsFromStorage(context, recyclerView).execute()
-        }else {
-            FetchMetroStationsFromAPI(context, recyclerView).execute()
-        }
+    fun loadMetroStationList (context: Context){
+        FetchMetroStationsFromAPI(context).execute()
     }
 
-    fun getClosestMetroStation (longitude: Long, latitude: Long, context: Context) : String{
-        TODO()
+    fun getMetroStationList(context: Context): StationList{
+        val rawResult = PersistanceManager.getMetroStations(context)
+        return Gson().fromJson(rawResult, StationList::class.java)
     }
 
 
-    class FetchMetroStationsFromAPI(val context: Context, var recyclerView: RecyclerView) : AsyncTask<Void, Void, StationList>() {
+    class FetchMetroStationsFromAPI(val context: Context) : AsyncTask<Void, Void, Void>() {
         val TAG = FetchMetroStationsFromAPI::class.java.name
 
-        override fun doInBackground(vararg p0: Void?): StationList {
+        override fun doInBackground(vararg p0: Void?): Void? {
             try {
                 Log.d(TAG, "Start doInBackground...")
                 val rawResult = Ion.with(context).load(Constants.STATIONS_ENDPOINT)
@@ -40,44 +37,15 @@ object FetchMetroStationsManager {
                 val stationList = Gson().fromJson(rawResult, StationList::class.java)
                 stationList.filter()
                 storeMetroStations(stationList)
-                return stationList
             } catch (e: Exception) {
                 Log.e(TAG, e.message)
-                return StationList(ArrayList<Station>())
             }
-        }
-
-        override fun onPostExecute(result: StationList) {
-            Log.d(TAG, "Start onPostExecute...")
-            recyclerView.adapter = MetroStationsAdapter(result, context)
+            return null
         }
 
         fun storeMetroStations(stationList: StationList){
             val stationString = Gson().toJson(stationList)
             PersistanceManager.setMetroStations(context, stationString)
         }
-    }
-
-    class FetchMetroStationsFromStorage(val context: Context, var recyclerView: RecyclerView) : AsyncTask<Void, Void, StationList>() {
-        val TAG = FetchMetroStationsFromStorage::class.java.name
-
-        override fun doInBackground(vararg p0: Void?): StationList {
-            try {
-                Log.d(TAG, "Start doInBackground...")
-                val rawResult = PersistanceManager.getMetroStations(context)
-                val stationList = Gson().fromJson(rawResult, StationList::class.java)
-                return stationList
-            } catch (e: Exception) {
-                Log.e(TAG, e.message)
-                return StationList(ArrayList<Station>())
-            }
-        }
-
-        override fun onPostExecute(result: StationList) {
-            Log.d(TAG, "Start onPostExecute...")
-            recyclerView.adapter = MetroStationsAdapter(result, context)
-
-        }
-
     }
 }

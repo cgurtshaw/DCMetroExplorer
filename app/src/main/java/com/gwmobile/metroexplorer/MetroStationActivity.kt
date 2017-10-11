@@ -31,7 +31,8 @@ class MetroStationActivity : AppCompatActivity()  {
 
         val recyclerView = rv_station_list
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
-        FetchMetroStationsManager.getMetroStationList(this, recyclerView)
+        val stations = FetchMetroStationsManager.getMetroStationList(this)
+        recyclerView.adapter = MetroStationsAdapter(stations, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.gwmobile.metroexplorer.manager.FetchMetroStationsManager
 
 
 class MenuActivity : AppCompatActivity(), LocationDetector.LocationListener {
@@ -21,10 +22,10 @@ class MenuActivity : AppCompatActivity(), LocationDetector.LocationListener {
     private var lat : Double = 0.0
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
+        FetchMetroStationsManager.loadMetroStationList(this)
 
         //Action when Closest station Btn is press
         btn_closest_station.setOnClickListener{
@@ -49,16 +50,15 @@ class MenuActivity : AppCompatActivity(), LocationDetector.LocationListener {
             val intent = Intent(this,MetroStationActivity::class.java)
             startActivity(intent)
         }
-
-        requestPermissionsIfNecessary()
-        val locationD = LocationDetector(this)
-        locationD.locationListener = this
-        locationD.detectLocation()
-
     }
 
     override fun onResume() {
         super.onResume()
+        showLoading(true)
+        requestPermissionsIfNecessary()
+        val locationD = LocationDetector(this)
+        locationD.locationListener = this
+        locationD.detectLocation()
     }
 
 
