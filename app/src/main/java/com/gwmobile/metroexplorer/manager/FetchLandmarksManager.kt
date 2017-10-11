@@ -2,12 +2,14 @@ package com.gwmobile.metroexplorer.manager
 
 import android.content.Context
 import android.os.AsyncTask
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.gson.Gson
 import com.gwmobile.metroexplorer.Constants
+import com.gwmobile.metroexplorer.LandmarkDetailActivity
 import com.gwmobile.metroexplorer.LandmarksAdapter
 import com.gwmobile.metroexplorer.MetroStationsAdapter
 import com.gwmobile.metroexplorer.model.Landmark
@@ -22,7 +24,7 @@ object FetchLandmarksManager {
 
     private val onItemClickListener = object : LandmarksAdapter.OnItemClickListener {
         override fun onItemClick(context: Context, view: View, position: Int) {
-            Toast.makeText(context, "Clicked " + position, Toast.LENGTH_SHORT).show()
+            startActivity(context, LandmarkDetailActivity.newIntent(context, position), null)
         }
     }
 
@@ -86,8 +88,9 @@ object FetchLandmarksManager {
 
         override fun onPostExecute(result: LandmarkList) {
             Log.d(TAG, "Start onPostExecute...")
-            TODO()
-            //recyclerView.adapter = MetroStationsAdapter(result, context)
+            var adapter = LandmarksAdapter(result, context)
+            adapter.setOnItemClickListener(onItemClickListener)
+            recyclerView.adapter = adapter
 
         }
 

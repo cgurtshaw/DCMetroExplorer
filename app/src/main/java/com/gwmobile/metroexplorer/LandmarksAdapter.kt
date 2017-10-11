@@ -36,9 +36,11 @@ class LandmarksAdapter(val landmarkList: LandmarkList, val context: Context):
 
     override fun onBindViewHolder(holder: LandmarksAdapter.ViewHolder, position: Int) {
         holder.bindItems(landmarkList.landmarks[position])
-        Picasso.with(context)
-                .load(landmarkList.landmarks[position].imageURL)
-                .into(holder.itemView.landmarkImage)
+        if(landmarkList.landmarks[position].imageURL.isNotEmpty()){
+            Picasso.with(context)
+                    .load(landmarkList.landmarks[position].imageURL)
+                    .into(holder.itemView.landmarkImage)
+        }
     }
 
     fun setOnItemClickListener(itemClickListener: OnItemClickListener){

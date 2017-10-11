@@ -15,5 +15,7 @@ object Constants {
     val YELP_SECRET = "l3gwv3qWQ3x0y0uAl3eImNXsI83C98nJtgy8iujR8ZYqrvnzHGTO53MOoINgRw8j"
     val YELP_SEARCH_ENDPOINT = "https://api.yelp.com/v3/businesses/search?"
     val LANDMARKS_KEY = "storedLandmarks"
+    val LOCATION = "LOCATION"
+    val FAVORITE = "FAVORITE"
 
 }
